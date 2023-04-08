@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Heading } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { Box, Button, Flex, Heading } from '@chakra-ui/react'
 
 export function MainPage() {
   return (
@@ -11,8 +11,13 @@ export function MainPage() {
 
         <Flex >
           <Link to={`/login`}>
-            <Button colorScheme="green">
-              Login
+            <Button p={3} m={2} colorScheme="green">
+              Ingresar
+            </Button> 
+          </Link>
+          <Link to={`/register`}>
+            <Button p={3} m={2} colorScheme="blue">
+              Registrar
             </Button> 
           </Link>
         </Flex>

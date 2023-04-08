@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { Box, Heading } from "@chakra-ui/react";
 
 // Este componente es un ejemplo de como interactuar con la db, no tiene relacion con el proyecto
-export const GetUser = () => {
+export function GetUser() {
 
   const [userName, setUserName] = useState('Usuario');
 
