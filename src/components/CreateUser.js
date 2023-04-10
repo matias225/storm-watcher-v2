@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createUser } from '../services/createUser';
-import { Box, Button, Heading, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export function CreateUser() {
   const [formData, setFormData] = useState({
@@ -19,37 +19,65 @@ export function CreateUser() {
   
   // Manejador de envio de formulario
   const handleSubmit = (event) => {
-    event.preventDefault();
     console.log(formData);
     createUser(formData);
   };
 
   return (
-    <>
-      <Box p={3} m={3}>
-        <Heading as="h1" size="lg" m={4}>
-            Registarse a StormApp
-        </Heading>  
-      </Box>
-      <Box p={3} m={3} >
+    <div className='auth__main'>
+      <div className='auth__box-container'>
+        <h3 className="auth__title">Register</h3>
         <form onSubmit={handleSubmit}>
-          <FormControl isRequired >
-            <FormLabel>Nombre</FormLabel>
-            <Input type='text' id="name" name="name" value={formData.name} onChange={handleChange}/>
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Correo Electronico</FormLabel>
-            <Input type='email' id="email" name="email" value={formData.email} onChange={handleChange}/>
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Contraseña</FormLabel>
-            <Input type='password' id="pass" name="pass" value={formData.pass} onChange={handleChange}/>
-          </FormControl>
-          <Button mt={4} colorScheme='teal' type='submit'>
-            Enviar
-          </Button>
+          <input 
+            type='text' 
+            placeholder='Name'
+            name='name' 
+            className='auth__input'
+            autoComplete='off'
+            onChange={handleChange}
+          />
+
+          <input 
+            type='text' 
+            placeholder='Email'
+            name='email' 
+            className='auth__input'
+            autoComplete='off'
+            onChange={handleChange}
+          />
+
+          <input 
+            type='password' 
+            placeholder='Password'
+            name='password'
+            className='auth__input'
+            autoComplete='off'
+            onChange={handleChange}
+          />
+
+          <input 
+            type='password' 
+            placeholder='Confirm password'
+            name='password2'
+            className='auth__input'
+            autoComplete='off'
+            onChange={handleChange}
+          />
+
+          <button 
+            type='submit'
+            className='btn btn-primary btn-block mb-5'
+            // disabled={true}
+          >
+            Register
+          </button>
+
+          <Link to="/login" className='link'>
+            Already registered?
+          </Link>
+
         </form>
-      </Box>
-    </>
+      </div>
+    </div>
   )
 }

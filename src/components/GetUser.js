@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
-import { Box, Heading } from "@chakra-ui/react";
 
 // Este componente es un ejemplo de como interactuar con la db, no tiene relacion con el proyecto
 export function GetUser() {
@@ -22,17 +21,15 @@ export function GetUser() {
   
   return (
     <>
-      <Box p={3} m={3}>
         { userName === "Usuario" ? (
-          <Heading as="h1" size="lg" m={4}>
+          <h1 as="h1" size="lg" m={4}>
             Loading... 
-          </Heading>
+          </h1>
         ) : (
-          <Heading as="h1" size="lg" m={4}>
+          <h1 as="h1" size="lg" m={4}>
             Bienvenido { userName }
-          </Heading>
+          </h1>
         )}
-      </Box>
     </>
   )
 }

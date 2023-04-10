@@ -1,27 +1,25 @@
 import { Link } from 'react-router-dom'
-import { Box, Button, Flex, Heading } from '@chakra-ui/react'
 
 export function MainPage() {
   return (
     <>
-      <Box p={3} m={3}>
-        <Heading as="h1" size="lg" m={4}>
-            Bienvenido a StormApp
-        </Heading>
 
-        <Flex >
+        <h3 as="h1" size="lg" m={4}>
+            Bienvenido a StormApp
+        </h3>
+
+
           <Link to={`/login`}>
-            <Button p={3} m={2} colorScheme="green">
+            <button>
               Ingresar
-            </Button> 
+            </button> 
           </Link>
           <Link to={`/register`}>
-            <Button p={3} m={2} colorScheme="blue">
+            <button >
               Registrar
-            </Button> 
+            </button> 
           </Link>
-        </Flex>
-      </Box>
+
     </>
   )
 }
