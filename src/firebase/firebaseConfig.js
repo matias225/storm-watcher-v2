@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getMessaging } from "firebase/messaging";
 
@@ -18,7 +19,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+// Initialize Google Auth Provider and get a reference to the service
+const googleAuthProvider = new GoogleAuthProvider();
+const auth = getAuth();
 // Initialize Firebase Cloud Messaging and get a reference to the service
 const messaging = getMessaging(app);
 
-export {app, db, messaging};
+export {
+  app, 
+  db, 
+  googleAuthProvider,
+  auth, 
+  messaging
+};

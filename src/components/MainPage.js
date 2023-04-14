@@ -4,7 +4,7 @@ export function MainPage() {
   return (
     <>
 
-        <h3 as="h1" size="lg" m={4}>
+        <h3>
             Bienvenido a StormApp
         </h3>
 
