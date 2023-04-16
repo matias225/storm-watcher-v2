@@ -10,7 +10,10 @@ export const RegisterScreen = () => {
 
   const dispatch = useDispatch();
   const { msgError } = useSelector( state => state.ui );
-  const { uid } = useSelector( state => state.auth );  
+
+  const { uid } = useSelector( state => state.auth );
+
+  
 
   const [ formValues, handleInputChange ] = useForm({
       name: 'Matias',
