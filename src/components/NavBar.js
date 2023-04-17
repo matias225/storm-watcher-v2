@@ -22,11 +22,11 @@ export const NavBar = () => {
 
           <div className='navbar__user'>
             <ul className='navbar__links'>
-              <li>
+              <li className='navbar__title'>
                 {name}
               </li>
               <li>
-                <button 
+                <button className='navbar__button'
                   onClick={ handleLogout } 
                 >
                   Logout

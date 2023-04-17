@@ -2,7 +2,6 @@
 .navbar__main {
   width: 100%;
   height: 60px;
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -26,12 +25,23 @@ a {
   }
 }
 
-button {
+.navbar__title {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.navbar__button {
   background-color: transparent;
   border: none;
   color: white;
   cursor: pointer;
   font-size: 1rem;
+
+  transition: .3s ease;
+  
+  &:hover {
+    color: darken($color: white, $amount: 30);  
+  }
 }
 
 .navbar__main .navbar__links {

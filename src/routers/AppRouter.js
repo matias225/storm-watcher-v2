@@ -8,7 +8,7 @@ import { LoginScreen } from '../components/auth/LoginScreen';
 import { RegisterScreen } from '../components/auth/RegisterScreen';
 import { AuthRouter } from './AuthRouter';
 import { HomePage } from '../components/HomePage';
-import { AlertsPage } from '../components/AlertsPage';
+import { AlertsComponent } from '../components/alerts/AlertsComponent';
 
 export const AppRouter = () => {
 
@@ -40,7 +40,7 @@ export const AppRouter = () => {
       <Route element={<AuthRouter isAuthenticated={isLoggedIn}/> }>
         <Route path='/' element={ <HomePage /> } />
       </Route>
-      <Route path={'/alerts'} element={ <AlertsPage /> } />
+      <Route path={'/alerts'} element={ <AlertsComponent /> } />
       <Route path={'/login'} element={ <LoginScreen /> } />
       <Route path={'/register'} element={ <RegisterScreen /> } />
       <Route path='*' element={ <LoginScreen /> } />
