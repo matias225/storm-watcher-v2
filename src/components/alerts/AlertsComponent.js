@@ -1,11 +1,23 @@
 import React from 'react';
 import { NavBar } from '../NavBar';
 import { AlertComponent } from './AlertComponent';
+import { startNewAlert } from '../../actions/alerts';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 export const AlertsComponent = () => {
-  
-  const alerts = [1, 2, 3, 4, 5];
-  
+  const dispatch = useDispatch();
+  const { uid } = useSelector( state => state.auth );
+  const { alerts } = useSelector( state => state.alerts );
+
+  if (!uid) {
+    return <Navigate to="/" replace />;
+  } 
+
+  const handleAddNew = () => {
+    dispatch( startNewAlert() );
+  }
+
   return (
     <>
       <NavBar /> 
@@ -14,12 +26,19 @@ export const AlertsComponent = () => {
           Alertas
         </h1>
         {
-          alerts.map( value => (
-            <AlertComponent key={value} />
+          alerts.map( alert => (
+            <AlertComponent 
+              key={ alert.id }
+              { ...alert }
+            />
           ))
         }
       </div>
-
+      <div 
+        onClick={ handleAddNew }
+        >
+          <p className='mt-5'>New alert</p>
+      </div>
     </>
   )
 }

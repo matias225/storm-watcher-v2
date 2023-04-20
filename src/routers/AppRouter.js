@@ -9,6 +9,7 @@ import { RegisterScreen } from '../components/auth/RegisterScreen';
 import { AuthRouter } from './AuthRouter';
 import { HomePage } from '../components/HomePage';
 import { AlertsComponent } from '../components/alerts/AlertsComponent';
+import { startLoadingAlerts } from '../actions/alerts';
 
 export const AppRouter = () => {
 
@@ -22,6 +23,7 @@ export const AppRouter = () => {
       if ( user?.uid ) {
         dispatch( login( user.uid, user.displayName ) );
         setIsLoggedIn(true);
+        dispatch( startLoadingAlerts() );
       } else {
         setIsLoggedIn(false);
       }

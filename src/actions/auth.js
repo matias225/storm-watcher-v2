@@ -3,6 +3,7 @@ import { auth, googleAuthProvider } from '../firebase/firebaseConfig';
 import { types } from '../types/types';
 import { updateProfile } from 'firebase/auth';
 import { finishLoading, startLoading } from './ui';
+import { alertLogout } from './alerts';
 
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
@@ -52,6 +53,7 @@ export const startLogout = () => {
   return async ( dispatch ) => {
     await signOut(auth);
     dispatch( logout() );
+    dispatch( alertLogout() );
   }
 }
 
