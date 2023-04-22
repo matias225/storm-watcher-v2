@@ -18,10 +18,10 @@ export const ShowRadar = () => {
         Imagenes de Radar
       </h1>
       <div className='radar__box'>
-        <button onClick={ handleClick1 } className='radar__button'>
+        <button onClick={ handleClick1 } className='btn btn-primary radar__button'>
           Oasis Sur
         </button>
-        <button onClick={ handleClick2 } className='radar__button'>
+        <button onClick={ handleClick2 } className='btn btn-primary radar__button'>
           Animacion
         </button>
         <div className='radar__img'>

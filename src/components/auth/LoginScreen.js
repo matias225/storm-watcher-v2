@@ -65,7 +65,6 @@ export const LoginScreen = () => {
             value={ email }
             onChange={ handleInputChange }
           />
-
           <input 
             type='password' 
             placeholder='Password'
@@ -75,9 +74,7 @@ export const LoginScreen = () => {
             value={ password }
             onChange={ handleInputChange }
           />
-
-          <button 
-              
+          <button   
             className='btn btn-primary btn-block'
             disabled={ loading }
           >

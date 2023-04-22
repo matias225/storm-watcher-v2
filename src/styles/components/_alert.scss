@@ -25,3 +25,35 @@
   margin-bottom: 20px;
 }
 
+// ----------------------------------------------------------------
+
+.alert__main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
+.alert__title-input {
+  color: $dark-grey;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.alert__textarea {
+  color: $dark-grey;
+  font-size: 20px;
+  flex: 1 1 auto;
+  resize: none;
+  height: 10vw;
+}
+
+.alert__button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+

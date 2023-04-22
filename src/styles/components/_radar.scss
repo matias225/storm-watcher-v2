@@ -12,18 +12,19 @@
 
 .radar__title {
   margin-bottom: 20px;
+  color: darken($color: $primary, $amount: 20);
 }
 
 .radar__button {
   font-size: larger;
   border: 2px solid;
-  color: $primary;
+  color: white;
 
   transition: .9s ease;
   
   &:hover {
-    color: white;
-    background-color: $primary;
+    color: darken($color: white, $amount: 20);
+    background-color: darken($color: $primary, $amount: 20);
   }
 }
 
