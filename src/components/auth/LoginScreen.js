@@ -5,6 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 import { removeError, setError } from '../../actions/ui';
+import Swal from 'sweetalert2';
 
 export const LoginScreen = () => {
 
@@ -35,9 +36,11 @@ export const LoginScreen = () => {
   const isFormValid = () => {
     if ( !validator.isEmail( email ) ) {
       dispatch( setError('Email not valid') );
+      Swal.fire('Error', msgError, 'error');
       return false;
     } else if ( password < 6 ) {
-      dispatch( setError("Password should be at least 6 characters and match") )
+      dispatch( setError("Password should be at least 6 characters and match") );
+      Swal.fire('Error', msgError, 'error');
       return false;
     }
     dispatch( removeError() );
@@ -53,14 +56,6 @@ export const LoginScreen = () => {
       <div className='auth__box-container'>
         <h3 className="auth__title">Login</h3>
         <form onSubmit={ handleLogin }> 
-          {
-            msgError &&
-              ( 
-                <div className='auth__alert-error'>
-                  { msgError }
-                </div>
-              )
-          }
           <input 
             type='text' 
             placeholder='Email'
@@ -82,7 +77,7 @@ export const LoginScreen = () => {
           />
 
           <button 
-            type='submit'
+              
             className='btn btn-primary btn-block'
             disabled={ loading }
           >

@@ -7,18 +7,18 @@ export const AlertComponent = ({ body, title, date }) => {
   
   return (
     <>
-      <div className='alert__alert'>
-        <p className='journal__entry-title'>
+      <div>
+        <p className='alert__title'>
           { title }
         </p>
-        <p className='journal__entry-content'>
+        <p className='alert__body'>
           { body }
         </p>
-        <p className='journal__entry-content'>
+        <p className='alert__date'>
           { alertDate.format('MMMM Do YYYY, h:mm:ss a') }
         </p>
       </div>
-      <br></br>
+      <hr></hr>
     </>
   )
 }

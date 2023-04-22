@@ -22,7 +22,7 @@ export const AlertsComponent = () => {
     <>
       <NavBar /> 
       <div className='alert__main'>
-        <h1>
+        <h1 className='alert__main-title'>
           Alertas
         </h1>
         {
@@ -33,12 +33,13 @@ export const AlertsComponent = () => {
             />
           ))
         }
-      </div>
-      <div 
+        <div 
         onClick={ handleAddNew }
         >
-          <p className='mt-5'>New alert</p>
+          <p className='btn-primary mt-5'>New alert</p>
       </div>
+      </div>
+      
     </>
   )
 }

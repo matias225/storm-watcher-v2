@@ -3,6 +3,25 @@
   text-align: center;
 }
 
-.alert__alert {
-  margin-top: 10px;
+.alert__main-title {
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+  color: darken($color: $primary, $amount: 20);
 }
+
+.alert__title {
+  color: $primary;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.alert__body {
+  color: black;
+}
+
+.alert__date {
+  color: black;
+  font-size: small;
+  margin-bottom: 20px;
+}
+
