@@ -10,6 +10,7 @@ import { AuthRouter } from './AuthRouter';
 import { HomePage } from '../components/HomePage';
 import { AlertsComponent } from '../components/alerts/AlertsComponent';
 import { startLoadingAlerts } from '../actions/alerts';
+import { NewAlertComponent } from '../components/alerts/NewAlertComponent';
 
 export const AppRouter = () => {
 
@@ -43,6 +44,7 @@ export const AppRouter = () => {
         <Route path='/' element={ <HomePage /> } />
       </Route>
       <Route path={'/alerts'} element={ <AlertsComponent /> } />
+      <Route path={'/newalert'} element={ <NewAlertComponent /> } />
       <Route path={'/login'} element={ <LoginScreen /> } />
       <Route path={'/register'} element={ <RegisterScreen /> } />
       <Route path='*' element={ <LoginScreen /> } />

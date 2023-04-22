@@ -20,7 +20,7 @@ export const alertReducer = (state = initialState, action) => {
     case types.alertsAddNew:
       return {
         ...state,
-        alerts: [ ...state.alerts, action.payload ]
+        alerts: [ action.payload, ...state.alerts ]
       }
 
     case types.alertsLoad:

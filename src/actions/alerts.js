@@ -3,18 +3,21 @@ import { db } from "../firebase/firebaseConfig";
 import { v4 as uuidv4 } from 'uuid';
 import { loadAlerts } from '../helpers/loadAlerts';
 import { types } from '../types/types';
+import { finishLoading, startLoading } from "./ui";
 
-export const startNewAlert = () => {
+export const startNewAlert = (title, body) => {
   return async ( dispatch ) => {
+    dispatch( startLoading() );
     const alertId = uuidv4();
     const newAlert = {
-      title: 'Nueva Alerta',
-      body: 'Esta es una nueva alerta',
+      title: title,
+      body: body,
       date: new Date().getTime()
     }
     await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
     dispatch( activeAlert( alertId, newAlert ) );
     dispatch( addNewAlert( alertId, newAlert ) );
+    dispatch( finishLoading() );
   }
 }
 
