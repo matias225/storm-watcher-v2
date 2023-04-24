@@ -49,8 +49,6 @@ export const setAlerts = ( alerts ) => ({
   payload: alerts
 });
 
-
-
 export const alertLogout = () => ({
   type: types.alertsLogoutCleaning,
 });
