@@ -6,6 +6,8 @@ import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
   const { name } = useSelector( state => state.auth );
+  const { isAdmin } = useSelector( state => state.auth );
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -18,8 +20,10 @@ export const NavBar = () => {
           <ul className='navbar__links'>
             <li><NavLink to='/'>Radar</NavLink></li>
             <li><NavLink to='/alerts'>Alertas</NavLink></li>
-            {/* Componente solo visible para los admin */}
-            <li><NavLink to='/newalert'>Nueva Alerta</NavLink></li>
+            {
+              isAdmin &&
+              <li><NavLink to='/newalert'>Nueva Alerta</NavLink></li>
+            }
           </ul>
 
           <div className='navbar__user'>

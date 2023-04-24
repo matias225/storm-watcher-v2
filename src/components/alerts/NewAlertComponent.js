@@ -8,6 +8,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 export const NewAlertComponent = () => {
   const { loading } = useSelector( state => state.ui );
   const { uid } = useSelector( state => state.auth );
+  const { isAdmin } = useSelector( state => state.auth );
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const NewAlertComponent = () => {
 
   const { title, body } = formValues;
 
-  if (!uid) {
+  if (!uid || !isAdmin) {
     return <Navigate to="/" replace />;
   } 
 

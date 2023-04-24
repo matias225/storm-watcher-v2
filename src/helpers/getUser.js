@@ -5,10 +5,15 @@ import { db } from "../firebase/firebaseConfig";
 export const getUser = async (uid) => {
   const user = await getDoc(doc(db, `users/${uid}`));
   if (user.exists()) {
-    // console.log(user.data());
     return true;
   } else {
     // console.log('Usuario no encontrado');
     return false;
   }
+}
+
+export const getUserRole = async (uid) => {
+  const user = await getDoc(doc(db, `users/${uid}`));
+  const rol = user.data().isAdmin;
+  return rol;
 }
