@@ -9,20 +9,34 @@ import { saveUser } from '../helpers/saveUser';
 import { getUser, getUserRole } from '../helpers/getUser';
 
 
-export const startLoginEmailPassword = (email, password) => {
-  return (dispatch) => {
+// export const startLoginEmailPassword = (email, password) => {
+//   return (dispatch) => {
+//     dispatch( startLoading() );
+//     signInWithEmailAndPassword( auth, email, password )
+//       .then( ({ user }) => { 
+//         dispatch( getUserFromFirestore(user) );
+//       }).catch( (e) => {
+//         dispatch( finishLoading() );
+//         Swal.fire('Error', e.code, 'error');
+//       });
+//   }
+// }
+
+// Optimizacion 
+export const  startLoginEmailPassword = (email, password) => {
+  return async (dispatch) => {
     dispatch( startLoading() );
-    signInWithEmailAndPassword( auth, email, password )
-      .then( ({ user }) => {
-        dispatch( getUserFromFirestore(user) );
-        dispatch( finishLoading() );
-      }).catch( (e) => {
-        dispatch( finishLoading() );
-        Swal.fire('Error', e.code, 'error');
-      });
+    try {
+      const { user } = await signInWithEmailAndPassword( auth, email, password )
+      dispatch( getUserFromFirestore(user) );
+    } catch(e) {
+      dispatch( finishLoading() );
+      Swal.fire('Error', e.code, 'error');
+    };
   }
 }
 
+// Funcion para registrar usuarios y loguearlos
 export const startRegisterWithEmailPasswordName = ( email, password, name ) => {
   return (dispatch) => {
     dispatch( startLoading() );
@@ -30,6 +44,7 @@ export const startRegisterWithEmailPasswordName = ( email, password, name ) => {
       .then( async({ user }) => {
         await updateProfile(user, { displayName: name });
         dispatch( saveUserInFirestore(user.uid, user.email, user.displayName) );
+      }).then(() => {
         dispatch( finishLoading() );
       })
       .catch( e => {
@@ -59,20 +74,54 @@ export const saveUserInFirestore = (uid, email, name) => {
 // La parte de verificacion de la Firestore y rol funciona, pero el problema 
 // es que la pagina carga antes de tener el rol, por lo que el link se sale si no es admin
 // o aparece tarde si es admin y si recargo la pagina tambien
+// export const getUserFromFirestore = (user) => {
+//   return (dispatch) => {
+//     getUser(user.uid).then((userExists) => {
+//       if (userExists) {
+//         getUserRole(user.uid)
+//           .then((isAdmin) => {
+//             dispatch( updateUser( isAdmin ) );
+//           });
+//         Swal.close();
+//       } else {
+//         dispatch( saveUserInFirestore(user.uid, user.email, user.displayName) )
+//         Swal.close();
+//       }
+//     }).then(() => {
+//         dispatch( login(user.uid, user.displayName) );
+//         dispatch( finishLoading() ) 
+//       });
+//   }
+// }
+
+// Funcion para consultar el rol cuando carga el home por primera vez o recargo el navegador
+export const getIsAdminFromFirestore = ( uid ) => {
+  return async (dispatch) => {
+    try {
+      const isAdmin = await getUserRole( uid );
+      dispatch( updateUser( isAdmin ) );
+    } catch (e) {
+      }  
+    }
+}
+
+// Funcion optimizada para consultar el usuario en Firebase cuando logueo
 export const getUserFromFirestore = (user) => {
-  return (dispatch) => {
-    getUser(user.uid).then((userExists) => {
+  return async (dispatch) => {
+    try {
+      const userExists = await getUser(user.uid);
       if (userExists) {
-        getUserRole(user.uid)
-          .then((isAdmin) => {
-            console.log('isAdmin', isAdmin);
-            dispatch( updateUser( isAdmin ) );
-          });
-        dispatch( login(user.uid, user.displayName, user.isAdmin) );
+        const isAdmin = await getUserRole(user.uid);
+        // localStorage.setItem("isAdmin", isAdmin);
+        dispatch( updateUser( isAdmin ) );
       } else {
-        dispatch( saveUserInFirestore(user.uid, user.email, user.displayName) );
+        dispatch( saveUserInFirestore(user.uid, user.email, user.displayName) )
       }
-    });
+    } finally {
+      dispatch( login(user.uid, user.displayName) );
+      dispatch( finishLoading() );
+      Swal.close();
+    }
   }
 }
 
@@ -92,7 +141,7 @@ export const login = (uid, displayName, isAdmin) => ({
     displayName,
     isAdmin
   }
-})
+}) 
 
 export const startLogout = () => {
   return async ( dispatch ) => {

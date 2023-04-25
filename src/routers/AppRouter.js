@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import { login } from '../actions/auth';
@@ -11,10 +11,13 @@ import { HomePage } from '../components/HomePage';
 import { AlertsComponent } from '../components/alerts/AlertsComponent';
 import { startLoadingAlerts } from '../actions/alerts';
 import { NewAlertComponent } from '../components/alerts/NewAlertComponent';
+import { LoadingScreen } from '../components/auth/LoadingScreen';
 
 export const AppRouter = () => {
 
   const dispatch = useDispatch();
+  const { loading } = useSelector( store => store.ui );
+
 
   const [ checking, setChecking ] = useState(true);
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
@@ -28,13 +31,15 @@ export const AppRouter = () => {
       } else {
         setIsLoggedIn(false);
       }
-      setChecking(false);
+      if ( !loading ) {
+        setChecking(false);
+      }
     });
-  }, [dispatch, setChecking, setIsLoggedIn]);
+  }, [dispatch, setChecking, setIsLoggedIn, loading]);
 
-  if (checking) {
+  if (checking || loading) {
     return  (
-      <h1>Espere...</h1>
+      <LoadingScreen />
     )
   }
   

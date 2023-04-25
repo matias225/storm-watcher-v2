@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
   const { name } = useSelector( state => state.auth );
-  const { isAdmin } = useSelector( state => state.auth );
+  const { isAdmin } = useSelector( state => state.admin );
+  // const isAdmin = localStorage.getItem("isAdmin");
 
   const dispatch = useDispatch();
 

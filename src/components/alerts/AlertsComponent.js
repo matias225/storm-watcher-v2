@@ -8,6 +8,7 @@ export const AlertsComponent = () => {
   const { uid } = useSelector( state => state.auth );
   const { alerts } = useSelector( state => state.alerts );
 
+  // Si no esta logueado redirecciono al login
   if (!uid) {
     return <Navigate to="/" replace />;
   } 

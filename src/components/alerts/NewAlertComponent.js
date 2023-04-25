@@ -8,7 +8,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 export const NewAlertComponent = () => {
   const { loading } = useSelector( state => state.ui );
   const { uid } = useSelector( state => state.auth );
-  const { isAdmin } = useSelector( state => state.auth );
+  const { isAdmin } = useSelector( state => state.admin );
+  // const isAdmin = localStorage.getItem("isAdmin");
   
   const navigate = useNavigate();
   const dispatch = useDispatch();

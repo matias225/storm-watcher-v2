@@ -22,7 +22,7 @@ export const LoginScreen = () => {
 
   // Solucion al problema de que no redirigia cuando logueaba desde la pagina login
   // Verifico que ya esta logueado verificando si existe la uid que devuelve Firebase, dentro del store
-  if (uid) {
+  if (uid && !loading) {
     return <Navigate to="/" replace />;
   } 
 

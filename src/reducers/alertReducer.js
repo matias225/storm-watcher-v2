@@ -29,8 +29,6 @@ export const alertReducer = (state = initialState, action) => {
         alerts: [ ...action.payload]
       }
 
-   
-
     case types.alertsLogoutCleaning:
       return {
         ...state,
