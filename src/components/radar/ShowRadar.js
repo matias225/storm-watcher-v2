@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import { onMessage } from 'firebase/messaging';
+import React, { useEffect, useState } from 'react';
+import { messaging } from '../../firebase/firebaseConfig';
 
 export const ShowRadar = () => {
   
   const [showSur, setShowSur ] = useState(true);
+
+  // Para mostrar las notifiaciones por consola
+  useEffect(()=>{
+    onMessage(messaging, (message) => {
+      console.log("Tu Notificacion:", message.notification.title);
+      console.log(message.notification.body)
+    })
+  });
 
   const handleClick1 = () => {
     setShowSur(true);

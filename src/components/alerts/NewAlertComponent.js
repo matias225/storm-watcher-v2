@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startNewAlert } from '../../actions/alerts';
 import { useForm } from '../../hooks/useForm';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { sendPushNotification } from '../../helpers/sendPushNotification';
 
 export const NewAlertComponent = () => {
   const { loading } = useSelector( state => state.ui );
@@ -31,10 +32,9 @@ export const NewAlertComponent = () => {
     navigate('/alerts');
   }
 
-  // const handleSendNotification = () => {
-  //   console.log('button send notification');
-  //   sendPushNotification(title, body);
-  // }
+  const handleSendNotification = () => {
+    sendPushNotification(title, body);
+  }
 
   return (
     <>
@@ -73,16 +73,20 @@ export const NewAlertComponent = () => {
             >
               Create new alert
             </button>
+           
           </div>
         </form>
 
 
-        {/* <button 
-          className='btn btn-primary'
-          onClick={ handleSendNotification }
-        >
-          Send Notification
-        </button> */}
+        <div className='alert__button'>
+          <button 
+            className='btn btn-primary'
+            onClick={ handleSendNotification }
+          >
+            Send Notification
+          </button>
+        </div>
+        
 
 
       </div>

@@ -29,8 +29,7 @@ export const HomePage = () => {
       } else {
         Swal.close();
       }
-    }, [isAdmin, dispatch, uid])
-
+    }, [isAdmin, dispatch, uid]);
 
   return (
     <>

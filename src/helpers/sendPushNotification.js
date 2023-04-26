@@ -1,17 +1,21 @@
-// import { db, messaging } from "../firebase/firebaseConfig";
-// import { onMessage, getToken } from "firebase/messaging";
+import { db, messaging } from "../firebase/firebaseConfig";
+import { onMessage, getToken } from "firebase/messaging";
 
-// const vapidKey = "BCyMqPTtAhyjNyGgSpt9UukjKrjRPnNCvBw9VcCfP_oFdyDEXRj9a-kADm5AF6sPbBXsB1TIBN_rQOvlU4s3rls";
+const vapidKey = "BCyMqPTtAhyjNyGgSpt9UukjKrjRPnNCvBw9VcCfP_oFdyDEXRj9a-kADm5AF6sPbBXsB1TIBN_rQOvlU4s3rls";
 // const alertsRef = db.collection('alerts');
 
 
 // console.log(vapidKey);
-// const tokenPromise = getToken(messaging, { vapidKey: vapidKey })
-
-// tokenPromise.then((currentToken) => {
-//   if (currentToken) {
-//     console.log('FCM registration token', currentToken);
-
+export const sendPushNotification = (title, body) => {
+  const tokenPromise = getToken(messaging, { vapidKey: vapidKey });
+  console.log(title, body);
+  tokenPromise.then((currentToken) => {
+    if (currentToken) {
+      // console.log('FCM registration token', currentToken);
+      new Notification(title, {body: body});
+    }
+  });
+}
 //         // Escucha los cambios en la colección "alerts".
 
 //       alertsRef.onSnapshot((snapshot) => {
