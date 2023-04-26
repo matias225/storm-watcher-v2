@@ -9,6 +9,8 @@ export const types = {
   uiRemoveError: '[UI] Remove Error',
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
+  uiStartSubmitting: '[UI] Start Submitting',
+  uiFinishSubmitting: '[UI] Finish Submitting',
 
   alertActive: '[Alert] Alert active', 
   alertsAddNew: '[Alert] Added new Alert',

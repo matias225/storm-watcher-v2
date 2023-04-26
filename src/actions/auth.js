@@ -102,7 +102,7 @@ export const getIsAdminFromFirestore = ( uid ) => {
       dispatch( updateUser( isAdmin ) );
     } catch (e) {
       }  
-    }
+  }
 }
 
 // Funcion optimizada para consultar el usuario en Firebase cuando logueo

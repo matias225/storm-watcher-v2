@@ -31,6 +31,11 @@ export const NewAlertComponent = () => {
     navigate('/alerts');
   }
 
+  // const handleSendNotification = () => {
+  //   console.log('button send notification');
+  //   sendPushNotification(title, body);
+  // }
+
   return (
     <>
       <NavBar />
@@ -70,6 +75,16 @@ export const NewAlertComponent = () => {
             </button>
           </div>
         </form>
+
+
+        {/* <button 
+          className='btn btn-primary'
+          onClick={ handleSendNotification }
+        >
+          Send Notification
+        </button> */}
+
+
       </div>
     </>
   )

@@ -1,25 +1,56 @@
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { loadAlerts } from '../helpers/loadAlerts';
 import { types } from '../types/types';
-import { finishLoading, startLoading } from "./ui";
+import { uiFinishSubmitting, uiStartSubmitting } from "./ui";
 
 export const startNewAlert = (title, body) => {
   return async ( dispatch ) => {
-    dispatch( startLoading() );
-    const alertId = uuidv4();
+    dispatch( uiStartSubmitting() );
+    const alertRef = collection(db, 'alerts');
+    // const alertId = uuidv4();
+    // const alertId = new Date().getTime();
+
     const newAlert = {
       title: title,
       body: body,
       date: new Date().getTime()
-    }
-    await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
-    dispatch( activeAlert( alertId, newAlert ) );
+    };
+    const docRef = await addDoc(alertRef, newAlert);
+    const alertId = docRef.id;
+
+    // Se crea la notificacion de JavaScript
+    new Notification(
+      title, 
+      {
+        body,
+    });
+
+    // await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
     dispatch( addNewAlert( alertId, newAlert ) );
-    dispatch( finishLoading() );
+    dispatch( uiFinishSubmitting() );
   }
 }
+
+// Version vieja
+// export const startNewAlert = (title, body) => {
+//   return async ( dispatch ) => {
+//     dispatch( startLoading() );
+//     const alertId = uuidv4();
+//     const alertId = new Date().getTime();
+
+//     const newAlert = {
+//       title: title,
+//       body: body,
+//       date: new Date().getTime()
+//     };
+//     await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
+//     dispatch( activeAlert( alertId, newAlert ) );
+//     dispatch( addNewAlert( alertId, newAlert ) );
+//     dispatch( finishLoading() );
+//   }
+// }
 
 export const activeAlert = (id, alert) => ({
   type: types.alertActive,

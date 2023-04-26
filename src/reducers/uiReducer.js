@@ -2,7 +2,8 @@ import { types } from '../types/types';
 
 const initialState = {
   loading: false,
-  msgError: null
+  msgError: null,
+  isSubmitting: false
 }
 
 export const uiReducer = ( state = initialState, action ) => {
@@ -29,6 +30,18 @@ export const uiReducer = ( state = initialState, action ) => {
       return {
         ...state,
         loading: false
+      }
+
+    case types.uiStartSubmitting:
+      return {
+        ...state,
+        isSubmitting: true
+      }
+      
+    case types.uiFinishSubmitting:
+      return {
+        ...state,
+        isSubmitting: false
       }
 
     default:

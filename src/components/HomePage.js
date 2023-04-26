@@ -35,8 +35,8 @@ export const HomePage = () => {
   return (
     <>
       {
-        ( isAdmin !== null ) ? 
-        (
+        ( isAdmin !== null ) 
+        ? (
         <>
           <NavBar />        
           <main>
