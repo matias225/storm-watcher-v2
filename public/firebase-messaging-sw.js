@@ -31,17 +31,32 @@ messaging.onBackgroundMessage(function(payload) {
     notificationOptions);
 });
 
-
-self.addEventListener('onMessage', (event) => {
+self.addEventListener('push', function(event) {
   console.log('Service Worker received push notification in foreground', event);
   // Mostrar una notificación push personalizada en primer plano
-  const title = event.data.notification.title;
+  const data = event.data.json();
+  const { title, body } = data.notification;
   const options = {
-    body: event.data.notification.body,
-    icon: event.data.notification.icon
+    body: body,
   };
-  self.registration.showNotification(title, options);
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+    .then((result) => {
+      console.log('Notification shown in foreground', result);
+    }).catch((error) => {
+      console.log('Error showing notification in foreground:', error);
+    })
+  );
 });
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('Notification clicked in foreground', event);
+  event.notification.close();
+  // Agregar aquí cualquier acción que se deba realizar al hacer clic en la notificación
+  event.waitUntil(clients.openWindow('localhost:3000/'));
+});
+
+
 // // self.addEventListener('push', (event) => {
 // //   const data = event.data.json();
 // //   const title = data.notification.title;

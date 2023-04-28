@@ -12,7 +12,7 @@ export const AlertsComponent = () => {
   // Se pide permiso cada vez que entra al componente
   Notification.requestPermission().then((permision) => {
     if (permision === 'granted') {
-      // console.log('Notification granted');
+      console.log('Notification granted');
     } else {
       console.log('Unable to get permission');
     }

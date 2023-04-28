@@ -1,6 +1,8 @@
 import { onMessage } from 'firebase/messaging';
 import React, { useEffect, useState } from 'react';
 import { messaging } from '../../firebase/firebaseConfig';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export const ShowRadar = () => {
   
@@ -9,8 +11,23 @@ export const ShowRadar = () => {
   // Para mostrar las notifiaciones por consola
   useEffect(()=>{
     onMessage(messaging, (message) => {
-      console.log("Tu Notificacion:", message.notification.title);
-      console.log(message.notification.body)
+      const { title, body } = message.notification;
+      // console.log("Tu Notificacion: ", title);
+      // console.log('El cuerpo es: ', body);
+      toast.info(
+        <div>
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </div>, { 
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     })
   });
 
@@ -27,6 +44,7 @@ export const ShowRadar = () => {
       <h1 className='radar__title'>
         Imagenes de Radar
       </h1>
+      <ToastContainer />
       <div className='radar__box'>
         <button onClick={ handleClick1 } className='btn btn-primary radar__button'>
           Oasis Sur
