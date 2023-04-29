@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar } from '../NavBar';
+import { NavBar } from '../ui/NavBar';
 import { AlertComponent } from './AlertComponent';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ export const AlertsComponent = () => {
   // Se pide permiso cada vez que entra al componente
   Notification.requestPermission().then((permision) => {
     if (permision === 'granted') {
-      console.log('Notification granted');
+      // console.log('Notification granted');
     } else {
       console.log('Unable to get permission');
     }

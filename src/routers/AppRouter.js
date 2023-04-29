@@ -7,7 +7,7 @@ import { login } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
 import { RegisterScreen } from '../components/auth/RegisterScreen';
 import { AuthRouter } from './AuthRouter';
-import { HomePage } from '../components/HomePage';
+import { HomePage } from '../components/ui/HomePage';
 import { AlertsComponent } from '../components/alerts/AlertsComponent';
 import { startLoadingAlerts } from '../actions/alerts';
 import { NewAlertComponent } from '../components/alerts/NewAlertComponent';
@@ -17,7 +17,6 @@ export const AppRouter = () => {
 
   const dispatch = useDispatch();
   const { loading } = useSelector( store => store.ui );
-
 
   const [ checking, setChecking ] = useState(true);
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);

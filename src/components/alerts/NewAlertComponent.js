@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar } from '../NavBar';
+import { NavBar } from '../ui/NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { startNewAlert } from '../../actions/alerts';
 import { useForm } from '../../hooks/useForm';

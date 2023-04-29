@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavBar } from './NavBar';
-import { ShowRadar } from './radar/ShowRadar';
-import { getIsAdminFromFirestore } from '../actions/auth';
+import { ShowRadar } from '../radar/ShowRadar';
+import { getIsAdminFromFirestore } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 
