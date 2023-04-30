@@ -53,7 +53,7 @@ self.addEventListener('notificationclick', function(event) {
   console.log('Notification clicked in foreground', event);
   event.notification.close();
   // Agregar aquí cualquier acción que se deba realizar al hacer clic en la notificación
-  event.waitUntil(clients.openWindow('localhost:3000/'));
+  event.waitUntil(clients.openWindow('https://stormapp-2ff78.web.app/'));
 });
 
 

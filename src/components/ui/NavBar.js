@@ -31,10 +31,10 @@ export const NavBar = () => {
             <li><NavLink to='/newalert'>Nueva Alerta</NavLink></li>
           }
         </ul>
-
+        { isAdmin ? 
         <div 
-          className={
-            isOpen ? 
+        className={
+          isOpen ? 
               'navbar__dropdown-menu open' :
               'navbar__dropdown-menu'
         }>
@@ -45,6 +45,17 @@ export const NavBar = () => {
             <li><NavLink to='/newalert'>Nueva Alerta</NavLink></li>
           }
         </div>
+        : 
+        <div 
+          className={
+            isOpen ? 
+            'navbar__dropdown-menu open noadmin' :
+            'navbar__dropdown-menu'
+          }>
+          <hr/><li><NavLink to='/'>Radar</NavLink></li>
+          <hr/><li><NavLink to='/alerts'>Alertas</NavLink></li>
+        </div>
+        }
 
         <div className='navbar__user'>
           <div className='navbar__toogle-btn'>
