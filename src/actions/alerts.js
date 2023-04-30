@@ -21,7 +21,7 @@ export const startNewAlert = (title, body) => {
     const docRef = await addDoc(alertRef, newAlert);
     const alertId = docRef.id;
 
-    // Peticion al Servidor para una notificacion de FCM
+    // Llamdo al helper que hace la peticion al servidor para una notificacion de FCM
     sendPushNotification(title, body);
 
     // await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
