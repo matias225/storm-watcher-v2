@@ -4,6 +4,7 @@ import { db } from "../firebase/firebaseConfig";
 import { loadAlerts } from '../helpers/loadAlerts';
 import { types } from '../types/types';
 import { uiFinishSubmitting, uiStartSubmitting } from "./ui";
+import { sendPushNotification } from "../helpers/sendPushNotification";
 
 export const startNewAlert = (title, body) => {
   return async ( dispatch ) => {
@@ -20,12 +21,8 @@ export const startNewAlert = (title, body) => {
     const docRef = await addDoc(alertRef, newAlert);
     const alertId = docRef.id;
 
-    // Se crea la notificacion de JavaScript
-    new Notification(
-      title, 
-      {
-        body,
-    });
+    // Peticion al Servidor para una notificacion de FCM
+    sendPushNotification(title, body);
 
     // await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
     dispatch( addNewAlert( alertId, newAlert ) );

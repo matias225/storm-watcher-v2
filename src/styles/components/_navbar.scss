@@ -26,6 +26,7 @@ a {
 }
 
 .navbar__title {
+  text-align: center;
   font-size: larger;
   font-weight: bolder;
 }
@@ -58,6 +59,7 @@ a {
 .navbar__main .navbar__user .navbar__links.name {
   display: flex;
   gap: 2rem;
+  padding-left: 100px;
 }
 
 .navbar__toogle-btn {
@@ -97,12 +99,22 @@ a {
     display: none;
   }
 
-  .navbar__main .navbar__user .navbar__toogle-btn {
-    display: block;
-    margin-left: 20px;
-  }
-
   .navbar__dropdown-menu {
     display: block;
+  }
+
+  .navbar__user {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .navbar__main .navbar__user .navbar__toogle-btn {
+    display: block;
+    padding-left: 20px;
+  }
+
+  .navbar__user .navbar__links.name {
+    justify-content: end;
   }
 }

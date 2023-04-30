@@ -48,14 +48,18 @@ export const NavBar = () => {
 
         <div className='navbar__user'>
           <div className='navbar__toogle-btn'>
-            <i className="fa-solid fa-bars" onClick={ handleToggle }/>
+            <i 
+              className={
+                isOpen ? 'fa-solid fa-xmark' :
+                'fa-solid fa-bars'} 
+              onClick={ handleToggle }/>
           </div>
           <ul className='navbar__links name'>
             <li className='navbar__title'>
               {name}
             </li>
             <li>
-              <button className='navbar__button navbar__title'
+              <button className='navbar__button'
                 onClick={ handleLogout } 
               >
                 Logout
