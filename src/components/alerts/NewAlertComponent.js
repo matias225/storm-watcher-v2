@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startNewAlert } from '../../actions/alerts';
 import { useForm } from '../../hooks/useForm';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { sendPushNotification } from '../../helpers/sendPushNotification';
+import { sendPushNotification, sendPushNotifications } from '../../helpers/sendPushNotification';
+import { getTokensFromFirestore } from '../../helpers/getTokensFromFirestore';
 
 export const NewAlertComponent = () => {
   const { loading } = useSelector( state => state.ui );
@@ -33,7 +34,12 @@ export const NewAlertComponent = () => {
   }
 
   const handleSendNotification = () => {
-    sendPushNotification(title, body);
+    // Traigo todos los tokens desde Firestore en un Array y armo el objeto
+    getTokensFromFirestore()
+     .then((tokensArray) => {
+      console.log('tokensArray: ', JSON.stringify(tokensArray));
+      sendPushNotifications(title, body, tokensArray)
+   });
   }
 
   return (

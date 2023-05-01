@@ -2,10 +2,8 @@ import { messaging } from "../firebase/firebaseConfig";
 import { getToken } from "firebase/messaging";
 
 const vapidKey = "BCyMqPTtAhyjNyGgSpt9UukjKrjRPnNCvBw9VcCfP_oFdyDEXRj9a-kADm5AF6sPbBXsB1TIBN_rQOvlU4s3rls";
-// const alertsRef = db.collection('alerts');
 
-
-// console.log(vapidKey);
+// Antigua implementacion, no sirve por que pide token cada vez que lo hace, o debe pedirlo?
 export const sendPushNotification = (title, body) => {
   // Obtengo el token de cliente
   const tokenPromise = getToken(messaging, { vapidKey: vapidKey });
@@ -38,6 +36,31 @@ export const sendPushNotification = (title, body) => {
     }
   });
 }
+
+// FUNCIONA!!!!! Manda notificaciones a todos los usuarios de tokens del array
+export const sendPushNotifications = (title, body, tokens) => {
+  // Obtengo el array de tokens de cliente
+  // Armado de los datos de notificacion
+  const notificationData = {
+    title: title,
+    body: body,
+    tokens: tokens,
+  }
+  // Configuración de la solicitud POST
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(notificationData)
+  };
+
+  fetch('http://localhost:3050/send-multiple-notifications',requestOptions)
+  .then(response => {
+    console.log('Notificación enviada correctamente');
+  })
+  .catch(error => {
+    console.error('Error al enviar la notificación:', error);
+  });
+}
 //         // Escucha los cambios en la colección "alerts".
 
 //       alertsRef.onSnapshot((snapshot) => {
@@ -59,32 +82,6 @@ export const sendPushNotification = (title, body) => {
 // }).catch((error) => {
 //   console.error('An error occurred while retrieving token.', error);
 // });
-
-
-// // Escucha las notificaciones entrantes.
-// onMessage(messaging, (payload) => {
-//   console.log('Message received. ', payload);
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
