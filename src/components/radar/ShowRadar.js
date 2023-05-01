@@ -77,11 +77,11 @@ export const ShowRadar = () => {
           }
         </div>
       </div>
-          <div>
-            <button onClick={ handleSaveToken } className='btn btn-primary radar__button'>
-              Get Token
-            </button>
-          </div>
+      <div>
+        <button onClick={ handleSaveToken } className='btn btn-primary radar__button'>
+          Get Token
+        </button>
+      </div>
     </div>
   )
 }

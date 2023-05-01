@@ -53,8 +53,8 @@ export const sendPushNotifications = (title, body, tokens) => {
     body: JSON.stringify(notificationData)
   };
 
-  fetch('http://localhost:3050/send-multiple-notifications',requestOptions)
-  .then(response => {
+  fetch('http://localhost:3050/send-multiple-notifications', requestOptions)
+  .then((response) => {
     console.log('Notificación enviada correctamente');
   })
   .catch(error => {

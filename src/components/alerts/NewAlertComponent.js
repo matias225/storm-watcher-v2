@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startNewAlert } from '../../actions/alerts';
 import { useForm } from '../../hooks/useForm';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { sendPushNotification, sendPushNotifications } from '../../helpers/sendPushNotification';
+import { sendPushNotifications } from '../../helpers/sendPushNotification';
 import { getTokensFromFirestore } from '../../helpers/getTokensFromFirestore';
 
 export const NewAlertComponent = () => {

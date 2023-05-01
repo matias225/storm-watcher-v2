@@ -101,7 +101,7 @@ export const RegisterScreen = () => {
           <button 
             type='submit'
             className='btn btn-primary btn-block mb-5'
-            disabled={ !name || !email }
+            disabled={ name || !validator.isEmail( email ) || !password }
           >
             Register
           </button>

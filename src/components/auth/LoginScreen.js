@@ -76,7 +76,7 @@ export const LoginScreen = () => {
           />
           <button   
             className='btn btn-primary btn-block'
-            disabled={ loading }
+            disabled={ loading || !validator.isEmail( email ) || !password }
           >
             Login
           </button>

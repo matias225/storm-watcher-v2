@@ -16,6 +16,8 @@
   background-color: $primary;
   border-radius: 2px;
 
+  transition: background-color .8s ease;
+
   &:disabled {
     background-color: lighten($color: $primary, $amount: 15);
   }
@@ -24,7 +26,6 @@
     background-color: darken($color: $primary, $amount: 15);
   }
 }
-
 
 .btn-block {
   width: 100%;
