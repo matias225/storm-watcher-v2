@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { onMessage } from 'firebase/messaging';
 import { auth, messaging } from '../../firebase/firebaseConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-import { getTokenFromMessaging } from '../../helpers/getTokenFromMessaging';
 import { onAuthStateChanged } from 'firebase/auth';
 import { processToken } from '../../helpers/processToken';
 
 export const ShowRadar = () => {
-  const { uid } = useSelector( state => state.auth );
   const [ showSur, setShowSur ] = useState(true);
 
   // Para mostrar las notifiaciones por consola
@@ -52,9 +49,9 @@ export const ShowRadar = () => {
   }
 
   // Boton de prueba para guardar obtener y guardar tokens
-  const handleSaveToken = async () => {
-    getTokenFromMessaging(uid);
-  }
+  // const handleSaveToken = async () => {
+  //   getTokenFromMessaging(uid);
+  // }
 
   return (
     <div className='radar__main'>
@@ -86,11 +83,11 @@ export const ShowRadar = () => {
           }
         </div>
       </div>
-      <div>
+      {/* <div>
         <button onClick={ handleSaveToken } className='btn btn-primary radar__button'>
           Get Token
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }

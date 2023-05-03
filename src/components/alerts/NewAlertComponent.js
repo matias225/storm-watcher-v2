@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startNewAlert } from '../../actions/alerts';
 import { useForm } from '../../hooks/useForm';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { sendPushNotifications } from '../../helpers/sendPushNotification';
+import { sendPushNotifications } from '../../helpers/sendPushNotifications';
 import { getTokensFromFirestore } from '../../helpers/getTokensFromFirestore';
 
 export const NewAlertComponent = () => {
   const { loading } = useSelector( state => state.ui );
   const { uid } = useSelector( state => state.auth );
   const { isAdmin } = useSelector( state => state.admin );
-  // const isAdmin = localStorage.getItem("isAdmin");
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,17 +29,25 @@ export const NewAlertComponent = () => {
   const handleAddNew = (e) => {
     e.preventDefault();
     dispatch( startNewAlert(title, body) );
-    navigate('/alerts');
-  }
 
-  const handleSendNotification = () => {
     // Traigo todos los tokens desde Firestore en un Array y armo el objeto
     getTokensFromFirestore()
      .then((tokensArray) => {
       console.log('tokensArray: ', JSON.stringify(tokensArray));
       sendPushNotifications(title, body, tokensArray)
-   });
+    });
+    navigate('/alerts');
   }
+
+  // const handleSendNotification = () => {
+  // //   Traigo todos los tokens desde Firestore en un Array y armo el objeto
+  //   getTokensFromFirestore()
+  //    .then((tokensArray) => {
+  //     console.log('tokensArray: ', JSON.stringify(tokensArray));
+  //     sendPushNotifications(title, body, tokensArray)
+  //   });
+  //   navigate('/alerts');
+  // }
 
   return (
     <>
@@ -82,9 +89,7 @@ export const NewAlertComponent = () => {
            
           </div>
         </form>
-
-
-        <div className='alert__button'>
+        {/* <div className='alert__button'>
           <button 
             className='btn btn-primary'
             onClick={ handleSendNotification }
@@ -92,9 +97,7 @@ export const NewAlertComponent = () => {
             Send Notification
           </button>
         </div>
-        
-
-
+         */}
       </div>
     </>
   )
