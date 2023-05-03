@@ -10,6 +10,5 @@ export const saveTokenInFirestore = (uid, token) => {
   };
   addDoc(tokensRef, newToken);
 }
-
 // Funciona pero graba siempre el mismo token, dependiendo del dispositivo y el navegador
 // Pero al menos los guarda en distintos usuarios

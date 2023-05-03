@@ -1,11 +1,11 @@
-importScripts('https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/9.19.1/firebase-messaging-compat.js');
-// Import and configure the Firebase SDK
-// These scripts are made available when the app is served or deployed on Firebase Hosting
-// If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
-// importScripts('/__/firebase/9.2.0/firebase-app-compat.js');
-// importScripts('/__/firebase/9.2.0/firebase-messaging-compat.js');
-// importScripts('/__/firebase/init.js');
+// importScripts('https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js');
+// importScripts('https://www.gstatic.com/firebasejs/9.19.1/firebase-messaging-compat.js');
+// // Import and configure the Firebase SDK
+// // These scripts are made available when the app is served or deployed on Firebase Hosting
+// // If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
+importScripts('/__/firebase/9.19.1/firebase-app-compat.js');
+importScripts('/__/firebase/9.19.1/firebase-messaging-compat.js');
+importScripts('/__/firebase/init.js');
 
 firebase.initializeApp({
     apiKey: "AIzaSyC4ippkkPWHIrZZmcrJAF7yaXZ5NLn2Nm0",
@@ -37,26 +37,27 @@ messaging.onBackgroundMessage(function(payload) {
     notificationOptions);
 });
 
-self.addEventListener('push', function(event) {
-  console.log('Service Worker received push notification in foreground', event);
-  // Mostrar una notificación push personalizada en primer plano
-  const data = event.data.json();
-  const { title, body } = data.notification;
-  const options = {
-    body: body,
-  };
-  event.waitUntil(
-    self.registration.showNotification(title, options)
-    .then((result) => {
-      console.log('Notification shown in foreground', result);
-    }).catch((error) => {
-      console.log('Error showing notification in foreground:', error);
-    })
-  );
-});
+// Para mostrarla en el foreground
+// self.addEventListener('push', function(event) {
+//   console.log('Service Worker received push notification in foreground', event);
+//   // Mostrar una notificación push personalizada en primer plano
+//   const data = event.data.json();
+//   const { title, body } = data.notification;
+//   const options = {
+//     body: body,
+//   };
+//   event.waitUntil(
+//     self.registration.showNotification(title, options)
+//     .then((result) => {
+//       console.log('Notification shown in foreground', result);
+//     }).catch((error) => {
+//       console.log('Error showing notification in foreground:', error);
+//     })
+//   );
+// });
 
 self.addEventListener('notificationclick', function(event) {
-  console.log('Notification clicked in foreground', event);
+  console.log('Notification clicked in foreground', event.notification);
   event.notification.close();
   // Agregar aquí cualquier acción que se deba realizar al hacer clic en la notificación
   event.waitUntil(clients.openWindow('https://stormapp-2ff78.web.app/'));
@@ -73,12 +74,3 @@ self.addEventListener('notificationclick', function(event) {
 
 // //   event.waitUntil(self.registration.showNotification(title, options));
 // // });
-
-// // self.addEventListener('notificationclick', function(event) {
-// //   console.log('Notificación clickeada:', event.notification);
-// //   event.notification.close();
-// //   // Abre la URL asociada con la notificación
-// //   event.waitUntil(clients.openWindow('https://localhost:3000/alerts'));
-// // });   
-
-

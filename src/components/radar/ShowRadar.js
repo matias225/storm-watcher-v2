@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { onMessage } from 'firebase/messaging';
-import { messaging } from '../../firebase/firebaseConfig';
+import { auth, messaging } from '../../firebase/firebaseConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 import { getTokenFromMessaging } from '../../helpers/getTokenFromMessaging';
+import { onAuthStateChanged } from 'firebase/auth';
+import { processToken } from '../../helpers/processToken';
 
 export const ShowRadar = () => {
   const { uid } = useSelector( state => state.auth );
@@ -32,6 +34,13 @@ export const ShowRadar = () => {
         theme: "dark",
       });
     })
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // El usuario ha iniciado sesión, obtenemos un nuevo token
+      processToken(user.uid);
+    }
   });
 
   const handleClick1 = () => {

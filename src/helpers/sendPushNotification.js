@@ -26,7 +26,7 @@ export const sendPushNotification = (title, body) => {
         body: JSON.stringify(notificationData)
       };
 
-      fetch('http://localhost:3050/send-notification',requestOptions)
+      fetch('http://localhost:8235/send-notification',requestOptions)
       .then(response => {
         console.log('Notificación enviada correctamente');
       })
@@ -37,7 +37,7 @@ export const sendPushNotification = (title, body) => {
   });
 }
 
-// FUNCIONA!!!!! Manda notificaciones a todos los usuarios de tokens del array
+// Manda notificaciones a todos los usuarios de tokens del array
 export const sendPushNotifications = (title, body, tokens) => {
   // Obtengo el array de tokens de cliente
   // Armado de los datos de notificacion
@@ -53,7 +53,7 @@ export const sendPushNotifications = (title, body, tokens) => {
     body: JSON.stringify(notificationData)
   };
 
-  fetch('http://localhost:3050/send-multiple-notifications', requestOptions)
+  fetch('http://localhost:8235/send-multiple-notifications', requestOptions)
   .then((response) => {
     console.log('Notificación enviada correctamente');
   })
