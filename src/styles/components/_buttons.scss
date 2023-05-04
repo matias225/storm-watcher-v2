@@ -19,11 +19,12 @@
   transition: background-color .8s ease;
 
   &:disabled {
-    background-color: lighten($color: $primary, $amount: 15);
+    background-color: lighten($color: $primary, $amount: 10);
+    cursor: not-allowed;
   }
 
   &:hover {
-    background-color: darken($color: $primary, $amount: 15);
+    background-color: darken($color: $primary, $amount: 10);
   }
 }
 

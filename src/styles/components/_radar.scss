@@ -29,6 +29,11 @@
   }
 }
 
+.radar__button.active {
+  color: darken($color: white, $amount: 20);
+  background-color: darken($color: $primary, $amount: 20);
+}
+
 .radar__img img {
   margin-top: 10px;
   max-width: 100%;

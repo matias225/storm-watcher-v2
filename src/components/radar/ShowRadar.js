@@ -8,7 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { processToken } from '../../helpers/processToken';
 
 export const ShowRadar = () => {
-  const [ showSur, setShowSur ] = useState(true);
+  const [ active, setActive ] = useState(true);
 
   // Para mostrar las notifiaciones por consola
   useEffect(()=>{
@@ -41,11 +41,11 @@ export const ShowRadar = () => {
   });
 
   const handleClick1 = () => {
-    setShowSur(true);
+    setActive(true);
   }
 
   const handleClick2 = () => {
-    setShowSur(false);
+    setActive(false);
   }
 
   // Boton de prueba para guardar obtener y guardar tokens
@@ -60,15 +60,28 @@ export const ShowRadar = () => {
       </h1>
       <ToastContainer />
       <div className='radar__box'>
-        <button onClick={ handleClick1 } className='btn btn-primary radar__button'>
+        <button 
+          onClick={ handleClick1 } 
+          className={
+            active ?
+            'btn btn-primary radar__button active' :
+            'btn btn-primary radar__button'
+          }
+        >
           Oasis Sur
         </button>
-        <button onClick={ handleClick2 } className='btn btn-primary radar__button'>
+        <button onClick={ handleClick2 }
+          className={
+            active ?
+              'btn btn-primary radar__button' :
+              'btn btn-primary radar__button active' 
+          }
+        >
           Animacion
         </button>
         <div className='radar__img'>
           {
-            ( showSur ) ? 
+            ( active ) ? 
               (
                 <img 
                   src='https://www2.contingencias.mendoza.gov.ar/radar/sur.gif' 
