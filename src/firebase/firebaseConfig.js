@@ -6,20 +6,13 @@ import { getMessaging } from "firebase/messaging";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  // apiKey: "AIzaSyC4ippkkPWHIrZZmcrJAF7yaXZ5NLn2Nm0",
-  // authDomain: "stormapp-2ff78.firebaseapp.com",
-  // projectId: "stormapp-2ff78",
-  // storageBucket: "stormapp-2ff78.appspot.com",
-  // messagingSenderId: "828220165537",
-  // appId: "1:828220165537:web:84d68191d38e3edce50fe0",
-  // vapidKey: 'AAAAwNXEzaE:APA91bEqtdoyFJ3iQ-2P6v33DYg4dG4NC9tf5ENw-AbGWLc5lzFVCREaJj8Fb416RGbv-8BBJN-h-h6ZXNvQOyb4eyA0p8vEmyamZyTTsZmWYaYvtm2cu4UV5OfyQ7qdVKt39gnNpK6-'
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY
+  // vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY
 };
 
 // Initialize Firebase
@@ -40,5 +33,4 @@ export {
   googleAuthProvider,
   auth, 
   messaging,
-  // vapidKey
 };

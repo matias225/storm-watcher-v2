@@ -8,12 +8,12 @@ importScripts('/__/firebase/9.19.1/firebase-messaging-compat.js');
 importScripts('/__/firebase/init.js');
 
 firebase.initializeApp({
-    apiKey: "AIzaSyC4ippkkPWHIrZZmcrJAF7yaXZ5NLn2Nm0",
-    authDomain: "stormapp-2ff78.firebaseapp.com",
-    projectId: "stormapp-2ff78",
-    storageBucket: "stormapp-2ff78.appspot.com",
-    messagingSenderId: "828220165537",
-    appId: "1:828220165537:web:84d68191d38e3edce50fe0",
+  apiKey: "AIzaSyDWco6HXJ4pnhngz8UOcyrtiUdwwWjrEe8",
+  authDomain: "stormwatcher-73cb7.firebaseapp.com",
+  projectId: "stormwatcher-73cb7",
+  storageBucket: "stormwatcher-73cb7.appspot.com",
+  messagingSenderId: "189145899682",
+  appId: "1:189145899682:web:48b16b1ed868d192006dfb"
 });
 
 const messaging = firebase.messaging();
@@ -60,7 +60,7 @@ self.addEventListener('notificationclick', function(event) {
   console.log('Notification clicked in foreground', event.notification);
   event.notification.close();
   // Agregar aquí cualquier acción que se deba realizar al hacer clic en la notificación
-  event.waitUntil(clients.openWindow('https://stormapp-2ff78.web.app/'));
+  event.waitUntil(clients.openWindow('https://stormapp-73cb7.web.app/'));
 });
 
 

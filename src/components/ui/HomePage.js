@@ -5,7 +5,6 @@ import { getIsAdminFromFirestore } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 
-
 export const HomePage = () => {
   const { uid } = useSelector( state => state.auth );
   const { isAdmin } = useSelector( state => state.admin );
