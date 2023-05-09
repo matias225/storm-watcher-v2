@@ -12,7 +12,6 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY
 };
 
 // Initialize Firebase
@@ -24,8 +23,6 @@ const googleAuthProvider = new GoogleAuthProvider();
 const auth = getAuth();
 // Initialize Firebase Cloud Messaging and get a reference to the service
 const messaging = getMessaging(app);
-
-// const vapidKey = firebaseConfig.vapidKey;
 
 export {
   app, 
