@@ -27,9 +27,13 @@ export const NavBar = () => {
         <ul className='navbar__links'>
           <li><NavLink to='/'>Radar</NavLink></li>
           <li><NavLink to='/alerts'>Alertas</NavLink></li>
-          {
+          {/* {
             isAdmin &&
             <li><NavLink to='/newalert'>Nueva Alerta</NavLink></li>
+          } */}
+          {
+            isAdmin &&
+            <li><NavLink to='/adminpanel'>Panel de Administrador</NavLink></li>
           }
         </ul>
         { isAdmin ? 
@@ -41,9 +45,13 @@ export const NavBar = () => {
         }>
           <hr/><li><NavLink to='/'>Radar</NavLink></li>
           <hr/><li><NavLink to='/alerts'>Alertas</NavLink></li>
-          <hr/>{
+          {/* <hr/>{
             isAdmin &&
             <li><NavLink to='/newalert'>Nueva Alerta</NavLink></li>
+          } */}
+          <hr/>{
+            isAdmin &&
+            <li><NavLink to='/adminpanel'>Panel de Administrador</NavLink></li>
           }
         </div>
         : 

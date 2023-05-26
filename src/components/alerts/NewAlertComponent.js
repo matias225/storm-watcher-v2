@@ -39,16 +39,6 @@ export const NewAlertComponent = () => {
     navigate('/alerts');
   }
 
-  // const handleSendNotification = () => {
-  // //   Traigo todos los tokens desde Firestore en un Array y armo el objeto
-  //   getTokensFromFirestore()
-  //    .then((tokensArray) => {
-  //     console.log('tokensArray: ', JSON.stringify(tokensArray));
-  //     sendPushNotifications(title, body, tokensArray)
-  //   });
-  //   navigate('/alerts');
-  // }
-
   return (
     <>
       <NavBar />
@@ -89,15 +79,6 @@ export const NewAlertComponent = () => {
            
           </div>
         </form>
-        {/* <div className='alert__button'>
-          <button 
-            className='btn btn-primary'
-            onClick={ handleSendNotification }
-          >
-            Send Notification
-          </button>
-        </div>
-         */}
       </div>
     </>
   )

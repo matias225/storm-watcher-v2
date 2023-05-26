@@ -20,6 +20,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // Initialize Google Auth Provider and get a reference to the service
 const googleAuthProvider = new GoogleAuthProvider();
+// Initialize Firebase authentication provider and get a reference to the service
 const auth = getAuth();
 // Initialize Firebase Cloud Messaging and get a reference to the service
 const messaging = getMessaging(app);

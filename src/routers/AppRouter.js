@@ -12,6 +12,7 @@ import { AlertsComponent } from '../components/alerts/AlertsComponent';
 import { startLoadingAlerts } from '../actions/alerts';
 import { NewAlertComponent } from '../components/alerts/NewAlertComponent';
 import { LoadingScreen } from '../components/auth/LoadingScreen';
+import AdminPanel from '../components/admin/AdminPanel';
 
 export const AppRouter = () => {
 
@@ -49,6 +50,7 @@ export const AppRouter = () => {
       </Route>
       <Route path={'/alerts'} element={ <AlertsComponent /> } />
       <Route path={'/newalert'} element={ <NewAlertComponent /> } />
+      <Route path={'/adminpanel'} element={ <AdminPanel /> } />
       <Route path={'/login'} element={ <LoginScreen /> } />
       <Route path={'/register'} element={ <RegisterScreen /> } />
       <Route path='*' element={ <LoginScreen /> } />

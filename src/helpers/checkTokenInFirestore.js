@@ -16,7 +16,6 @@ export const checkTokenInFirestore = async (uid) => {
       tokenById.push(token)
     }
   });
-  console.log(tokenById)
   return tokenById;
 }
 // Funciona, trae token segun el uid
