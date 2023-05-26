@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 // import { v4 as uuidv4 } from 'uuid';
 import { loadAlerts } from '../helpers/loadAlerts';
@@ -25,25 +25,6 @@ export const startNewAlert = (title, body) => {
     dispatch( uiFinishSubmitting() );
   }
 }
-
-// Version vieja
-// export const startNewAlert = (title, body) => {
-//   return async ( dispatch ) => {
-//     dispatch( startLoading() );
-//     const alertId = uuidv4();
-//     const alertId = new Date().getTime();
-
-//     const newAlert = {
-//       title: title,
-//       body: body,
-//       date: new Date().getTime()
-//     };
-//     await setDoc(doc(db,`/alerts/${ alertId }`), newAlert);
-//     dispatch( activeAlert( alertId, newAlert ) );
-//     dispatch( addNewAlert( alertId, newAlert ) );
-//     dispatch( finishLoading() );
-//   }
-// }
 
 export const activeAlert = (id, alert) => ({
   type: types.alertActive,
@@ -75,4 +56,17 @@ export const setAlerts = ( alerts ) => ({
 
 export const alertLogout = () => ({
   type: types.alertsLogoutCleaning,
+});
+
+export const startDeleting = ( id ) => {
+  return async ( dispatch ) => {
+    const AlertId = id;
+    await deleteDoc(doc(db,`/alerts/${ AlertId }`));
+    dispatch( deleteAlert(AlertId) );
+  }
+}
+
+export const deleteAlert = ( id ) => ({
+  type: types.alertDelete,
+  payload: id
 });

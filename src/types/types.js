@@ -16,4 +16,5 @@ export const types = {
   alertsAddNew: '[Alert] Added new Alert',
   alertsLoad: '[Alert] Load Alerts',
   alertsLogoutCleaning: '[Alert] Logout Cleaning',
+  alertDelete: '[Alert] Delete Alert'
 }
