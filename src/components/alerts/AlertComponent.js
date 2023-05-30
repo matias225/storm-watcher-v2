@@ -1,24 +1,26 @@
 import moment from 'moment';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startDeleting } from '../../actions/alerts';
+import { activeAlert, startDeleting } from '../../actions/alerts';
+import { useNavigate } from 'react-router-dom';
 
 export const AlertComponent = ({ id, body, title, date }) => {
   
-  const { isAdmin } = useSelector( state => state.admin );  
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isAdmin } = useSelector( state => state.admin );  
   const alertDate = moment(date);
+  const alert = {
+    body, title, date
+  }
 
   const handleEdit = () => {
-    console.log('Editando alert')
-    // dispatch( setActive )
-    console.log(id)
+    dispatch( activeAlert(id, alert) );
+    navigate(`/editalert`);
   }
 
   const handleDelete = () => {
-    console.log('Borrando alert')
     dispatch( startDeleting(id) );
-    console.log(id)
   }
   
   return (

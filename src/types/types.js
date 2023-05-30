@@ -12,9 +12,10 @@ export const types = {
   uiStartSubmitting: '[UI] Start Submitting',
   uiFinishSubmitting: '[UI] Finish Submitting',
 
-  alertActive: '[Alert] Alert active', 
+  alertActive: '[Alert] Set active alert', 
   alertsAddNew: '[Alert] Added new Alert',
   alertsLoad: '[Alert] Load Alerts',
+  alertsUpdate: '[Alert] Updated Alerts',
   alertsLogoutCleaning: '[Alert] Logout Cleaning',
   alertDelete: '[Alert] Delete Alert'
 }

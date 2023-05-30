@@ -10,7 +10,6 @@ export default function AdminPanel() {
       <div>
         <ul className='admin__list'>
           <li><NavLink to='/newalert'>Crear nueva alerta</NavLink></li>
-          <li><NavLink to='/newalert'>Editar usuarios</NavLink></li>
         </ul>
       </div>
     </>

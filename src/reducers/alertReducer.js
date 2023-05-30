@@ -38,6 +38,16 @@ export const alertReducer = (state = initialState, action) => {
         alerts: [ ...action.payload]
       }
 
+    case types.alertsUpdate:
+      return {
+        ...state,
+        alerts: state.alerts.map(
+          alert => alert.id === action.payload.id
+            ? action.payload.alert
+            : alert
+        )
+      }
+
     case types.alertsLogoutCleaning:
       return {
         ...state,

@@ -1,9 +1,10 @@
-import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 // import { v4 as uuidv4 } from 'uuid';
 import { loadAlerts } from '../helpers/loadAlerts';
 import { types } from '../types/types';
 import { uiFinishSubmitting, uiStartSubmitting } from "./ui";
+import Swal from "sweetalert2";
 
 export const startNewAlert = (title, body) => {
   return async ( dispatch ) => {
@@ -69,4 +70,28 @@ export const startDeleting = ( id ) => {
 export const deleteAlert = ( id ) => ({
   type: types.alertDelete,
   payload: id
+});
+
+// Actualizar alerta en Firestore
+export const startSaveAlert = ( alert ) => {
+  return async ( dispatch ) => {
+    const alertToFirestore = { ...alert };
+    delete alertToFirestore.id;
+
+    await updateDoc(doc(db, `/alerts/${ alert.id }`), alertToFirestore);
+    dispatch( refreshAlert( alert.id, alertToFirestore) );
+    Swal.fire('Saved', alert.title, 'success');
+  }
+}
+
+// Actualizar alertas en la lista
+export const refreshAlert = ( id, alert ) => ({
+  type: types.alertsUpdate,
+  payload: {
+    id, 
+    alert: {
+      id,
+      ...alert
+    }
+  }
 });
