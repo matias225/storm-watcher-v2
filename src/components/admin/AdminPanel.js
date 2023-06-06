@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavBar } from '../ui/NavBar'
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { deleteOlderAlerts } from "../../helpers/deleteOlderAlerts";
 
-export default function AdminPanel() {
+export const AdminPanel = () => {
+
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!hasLoaded) {
+      deleteOlderAlerts();
+      setHasLoaded(true);
+    }
+  }, [hasLoaded]);
 
   return (
     <>

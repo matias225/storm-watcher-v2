@@ -12,7 +12,7 @@ import { AlertsComponent } from '../components/alerts/AlertsComponent';
 import { startLoadingAlerts } from '../actions/alerts';
 import { NewAlertComponent } from '../components/alerts/NewAlertComponent';
 import { LoadingScreen } from '../components/auth/LoadingScreen';
-import AdminPanel from '../components/admin/AdminPanel';
+import { AdminPanel } from '../components/admin/AdminPanel';
 import { AlertEdit } from '../components/admin/AlertEdit';
 
 export const AppRouter = () => {

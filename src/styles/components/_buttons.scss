@@ -28,6 +28,23 @@
   }
 }
 
+.btn-delete {
+  margin-left: 5px;
+  background-color: $red;
+  border-radius: 2px;
+
+  transition: background-color .8s ease;
+
+  &:disabled {
+    background-color: lighten($color: $red, $amount: 10);
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: darken($color: $red, $amount: 10);
+  }
+}
+
 .btn-block {
   width: 100%;
 }
