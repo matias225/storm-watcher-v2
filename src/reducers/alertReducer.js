@@ -27,9 +27,9 @@ export const alertReducer = (state = initialState, action) => {
       return {
         ...state,
         active: null,
-          alerts: state.alerts.filter( 
-            alert => alert.id !== action.payload
-          )
+        alerts: state.alerts.filter( 
+          alert => alert.id !== action.payload
+        )
       }
 
     case types.alertsLoad:

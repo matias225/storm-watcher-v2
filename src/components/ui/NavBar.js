@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { startLogout } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {

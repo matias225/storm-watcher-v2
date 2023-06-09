@@ -38,16 +38,16 @@ export const AlertComponent = ({ id, body, title, date }) => {
         { isAdmin && 
           <>
             <button
-              className='btn-primary' 
+              className='btn btn-primary' 
               onClick={handleEdit}
             >
-              Edit
+              Editar
             </button>
             <button
-              className='btn-delete' 
+              className='btn btn-delete' 
               onClick={handleDelete}
             >
-              Delete
+              Borrar
             </button>
           </>
         }

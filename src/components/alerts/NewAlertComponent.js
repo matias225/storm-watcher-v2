@@ -39,6 +39,11 @@ export const NewAlertComponent = () => {
     navigate('/alerts');
   }
 
+  const handleBackClick = (e) => {
+    e.preventDefault();
+    navigate('/adminpanel');
+  }
+
   return (
     <>
       <NavBar />
@@ -46,6 +51,7 @@ export const NewAlertComponent = () => {
         <h1 className='alert__main-title'>
           Crear nueva alerta
         </h1>
+
         <form 
           onSubmit={ handleAddNew }
           className='alert__main-content'  
@@ -69,16 +75,24 @@ export const NewAlertComponent = () => {
             ></textarea>
           
           <div className='alert__button'>
+
             <button 
               type='submit'
               className='btn btn-primary'
               disabled={ loading || !title || !body }
             >
-              Create new alert
-            </button>
-           
+              Crear nueva alerta
+            </button>           
           </div>
         </form>
+        <div className='alert__button'>
+          <button
+            onClick={handleBackClick}
+            className='btn btn-primary' 
+          > 
+            Volver
+          </button>
+        </div>
       </div>
     </>
   )

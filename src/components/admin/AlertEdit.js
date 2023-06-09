@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavBar } from '../ui/NavBar';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { activeAlert, startSaveAlert } from '../../actions/alerts';
 
@@ -15,6 +15,7 @@ export const AlertEdit = () => {
   const [ formValues, handleInputChange, reset ] = useForm( alert );
   const { body, title } = formValues;
   const activeId = useRef( alert.id );
+  const navigate = useNavigate();
   
   useEffect(() => {
     if (alert.id !== activeId.current ) {
@@ -34,12 +35,18 @@ export const AlertEdit = () => {
   const handleEditAlert = (e) => {
     e.preventDefault();
     dispatch( startSaveAlert( alert ) );
+    navigate('/alerts');
+  }
+
+  const handleBackClick = (e) => {
+    e.preventDefault();
+    navigate('/alerts');
   }
 
   return (
     <>
-    <NavBar/>
-    <div>
+      <NavBar/>
+      <div>
         <h1 className='alert__main-title'>
           Editar alerta
         </h1>
@@ -71,11 +78,18 @@ export const AlertEdit = () => {
               className='btn btn-primary'
               disabled={ loading || !title || !body }
             >
-              Save changes
+              Guardar cambios
             </button>
           </div>
-
         </form>
+        <div className='alert__button'>
+          <button
+            onClick={handleBackClick}
+            className='btn btn-primary' 
+          > 
+            Volver
+          </button>
+        </div>
       </div>
     </>
   )

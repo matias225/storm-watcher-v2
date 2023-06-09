@@ -77,7 +77,7 @@ export const ShowRadar = () => {
               'btn btn-primary radar__button active' 
           }
         >
-          Animacion
+          Animación
         </button>
         <div className='radar__img'>
           {

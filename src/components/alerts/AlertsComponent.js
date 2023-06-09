@@ -2,12 +2,13 @@ import React from 'react';
 import { NavBar } from '../ui/NavBar';
 import { AlertComponent } from './AlertComponent';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const AlertsComponent = () => {
   const { uid } = useSelector( state => state.auth );
   const { alerts } = useSelector( state => state.alerts );
   const { isAdmin } = useSelector( state => state.admin );  
+  const navigate = useNavigate();
 
   // Se pide permiso cada vez que entra al componente
   if (Notification.permission === 'granted') {
@@ -29,6 +30,11 @@ export const AlertsComponent = () => {
     return <Navigate to="/" replace />;
   } 
 
+  const handleBackClick = (e) => {
+    e.preventDefault();
+    navigate('/radar');
+  }
+
   return (
     <>
       <NavBar /> 
@@ -45,6 +51,14 @@ export const AlertsComponent = () => {
           ))
         }
       </div>
+      <div className='alert__button'>
+          <button
+            onClick={handleBackClick}
+            className='btn btn-primary' 
+          > 
+            Volver
+          </button>
+        </div>
     </>
   )
 }
